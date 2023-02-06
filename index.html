@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: lightblue;
+        margin: 0;
+      }
+
+      .sidebar {
+        background-color: white;
+        height: 100vh;
+        width: 200px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+
+      .main {
+        margin-left: 200px;
+        padding: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      #joke-btn {
+        background-color: lightblue;
+      }
+
+      #redirect-btn {
+        background-color: green;
+      }
+
+      #joke {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <button id="joke-btn">Get a joke</button>
+      <button id="redirect-btn">Show Blaxtair </button>
+      <div id="joke"></div>
+    </div>
+    <div class="main">
+      <iframe id="frame" src="https://blaxtair.com/"></iframe>
+    </div>
+
+    <script>
+      const jokes = [
+        "Why did the tomato turn red? Because it saw the salad dressing!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!",
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Why did the cookie go to the doctor? Because it was feeling crumbly!",
+        "Why did the bicycle fall over? Because it was two-tired!"
+      ];
+
+      const jokeBtn = document.getElementById("joke-btn");
+      const jokeDiv = document.getElementById("joke");
+      const redirectBtn = document.getElementById("redirect-btn");
+      const frame = document.getElementById("frame");
+
+      jokeBtn.addEventListener("click", function() {
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        jokeDiv.innerHTML = jokes[randomIndex];
+      });
+
+      redirectBtn.addEventListener("click", function() {
+        frame.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
+
