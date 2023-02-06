@@ -19,20 +19,24 @@
   <body>
     <div class="sidebar">
       <button id="joke-button">Get a joke</button><br><br>
-      <button id="search-button">Google Search</button><br><br>
+      <button id="blaxtair-button">Go to Blaxtair</button><br><br>
+      <button id="photo-button">Go to Photo</button><br><br>
       <button id="upload-button">Upload Image</button><br><br>
     </div>
     <div class="main-content">
       <p id="joke-text"></p>
-      <iframe id="search-frame" style="display:none;"></iframe>
+      <iframe id="blaxtair-frame" style="display:none;"></iframe>
+      <iframe id="photo-frame" style="display:none;"></iframe>
       <input type="file" id="file-input" style="display:none;">
       <img id="displayed-image" style="display:none;">
     </div>
     <script>
       const jokeButton = document.querySelector("#joke-button");
       const jokeText = document.querySelector("#joke-text");
-      const searchButton = document.querySelector("#search-button");
-      const searchFrame = document.querySelector("#search-frame");
+      const blaxtairButton = document.querySelector("#blaxtair-button");
+      const blaxtairFrame = document.querySelector("#blaxtair-frame");
+      const photoButton = document.querySelector("#photo-button");
+      const photoFrame = document.querySelector("#photo-frame");
       const uploadButton = document.querySelector("#upload-button");
       const fileInput = document.querySelector("#file-input");
       const displayedImage = document.querySelector("#displayed-image");
@@ -47,24 +51,12 @@
         jokeText.innerHTML = randomJoke;
       });
 
-      searchButton.addEventListener("click", function() {
-        searchFrame.style.display = "block";
-        searchFrame.src = "https://www.google.com/";
+      blaxtairButton.addEventListener("click", function() {
+        blaxtairFrame.style.display = "block";
+        blaxtairFrame.src = "https://blaxtair.com/";
       });
 
-      uploadButton.addEventListener("click", function() {
-        fileInput.style.display = "block";
+      photoButton.addEventListener("click", function() {
+        photoFrame.style.display = "block";
+        photoFrame.src = "https://www.pexels.com/photo/blue-sea-under-yellow-sky-2792043/";
       });
-
-      fileInput.addEventListener("change", function() {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-        reader.addEventListener("load", function() {
-          displayedImage.style.display = "block";
-          displayedImage.src = reader.result;
-        });
-        reader.readAsDataURL(file);
-      });
-    </script>
-  </body>
-</html>
