@@ -3,70 +3,85 @@
     <style>
       body {
         background-color: lightblue;
-        display: flex;
+        margin: 0;
       }
+
       .sidebar {
-        width: 200px;
         background-color: white;
+        height: 100vh;
+        width: 200px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow-x: hidden;
         padding: 20px;
       }
-      .main-content {
-        width: 100%;
+
+      .main {
+        margin-left: 200px;
         padding: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      #joke-btn {
+        background-color: lightblue;
+      }
+
+      #redirect-btn {
+        background-color: green;
+      }
+
+      #joke {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
   <body>
     <div class="sidebar">
-      <button id="joke-button">Get a joke</button><br><br>
-      <button id="blaxtair-button">Go to Blaxtair</button><br><br>
-      <button id="photo-button">Go to Pexels Photo</button><br><br>
-      <button id="upload-button">Upload Image</button><br><br>
+      <button id="joke-btn">Get a joke</button>
+      <button id="redirect-btn">Show Blaxtair </button>
+      <div id="joke"></div>
     </div>
-    <div class="main-content">
-      <p id="joke-text"></p>
-      <iframe id="search-frame" style="display:none;"></iframe>
-      <input type="file" id="file-input" style="display:none;">
-      <img id="displayed-image" style="display:none;">
+    <div class="main">
+      <iframe id="frame" src="https://blaxtair.com/"></iframe>
     </div>
+
     <script>
-      const jokeButton = document.querySelector("#joke-button");
-      const jokeText = document.querySelector("#joke-text");
-      const blaxtairButton = document.querySelector("#blaxtair-button");
-      const photoButton = document.querySelector("#photo-button");
-      const uploadButton = document.querySelector("#upload-button");
-      const fileInput = document.querySelector("#file-input");
-      const displayedImage = document.querySelector("#displayed-image");
+      const jokes = [
+        "Why did the tomato turn red? Because it saw the salad dressing!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!",
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Why did the cookie go to the doctor? Because it was feeling crumbly!",
+        "Why did the bicycle fall over? Because it was two-tired!"
+      ];
 
-      jokeButton.addEventListener("click", function() {
-        const jokes = [
-          "Why did the tomato turn red? Because it saw the salad dressing!",
-          "Why did the scarecrow win an award? Because he was outstanding in his field!",
-          "Why don't scientists trust atoms? Because they make up everything!",
-        ];
-        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
-        jokeText.innerHTML = randomJoke;
+      const jokeBtn = document.getElementById("joke-btn");
+      const jokeDiv = document.getElementById("joke");
+      const redirectBtn = document.getElementById("redirect-btn");
+      const frame = document.getElementById("frame");
+
+      jokeBtn.addEventListener("click", function() {
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        jokeDiv.innerHTML = jokes[randomIndex];
       });
 
-      blaxtairButton.addEventListener("click", function() {
-        window.location.href = "https://blaxtair.com/";
+      redirectBtn.addEventListener("click", function() {
+        frame.style.display = "block";
       });
-
-      photoButton.addEventListener("click", function() {
-        window.location.href = "https://www.pexels.com/photo/blue-sea-under-yellow-sky-2792043/";
-      });
-
-      uploadButton.addEventListener("click", function() {
-        fileInput.style.display = "block";
-      });
-
-      fileInput.addEventListener("change", function() {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-        reader.addEventListener("load", function() {
-          displayedImage.style.display = "block";
-          displayedImage.src = reader.result;
-        });
     </script>
   </body>
 </html>
