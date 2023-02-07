@@ -27,50 +27,34 @@
       .joke {
         margin-top: 20px;
       }
+      .blaxtair-iframe {
+        display: none;
+      }
     </style>
   </head>
   <body>
     <div class="sidebar">
       <div class="button" id="jokeButton">Show a Joke</div>
       <div class="button" id="blaxtairButton">Go to Blaxtair</div>
-      <div class="button" id="uploadImageButton">Upload Image</div>
     </div>
     <div class="main-content">
       <div class="joke" id="jokeContainer"></div>
-      <div id="blaxtairContainer"></div>
-      <div id="uploadedImageContainer"></div>
+      <iframe class="blaxtair-iframe" id="blaxtairContainer" src="https://blaxtair.com/"></iframe>
     </div>
     <script>
       const jokeButton = document.getElementById("jokeButton");
       const jokeContainer = document.getElementById("jokeContainer");
       const blaxtairButton = document.getElementById("blaxtairButton");
       const blaxtairContainer = document.getElementById("blaxtairContainer");
-      const uploadImageButton = document.getElementById("uploadImageButton");
-      const uploadedImageContainer = document.getElementById("uploadedImageContainer");
 
       jokeButton.addEventListener("click", function() {
         jokeContainer.innerHTML = "Why did the scarecrow win an award? Because he was outstanding in his field.";
       });
 
       blaxtairButton.addEventListener("click", function() {
-        window.open("https://blaxtair.com/", "_blank");
-      });
-
-      uploadImageButton.addEventListener("click", function() {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = "image/*";
-        input.addEventListener("change", function() {
-          const reader = new FileReader();
-          reader.addEventListener("load", function() {
-            const image = document.createElement("img");
-            image.src = reader.result;
-            uploadedImageContainer.appendChild(image);
-          });
-          reader.readAsDataURL(input.files[0]);
-        });
-        input.click();
+        blaxtairContainer.style.display = "block";
       });
     </script>
   </body>
 </html>
+
