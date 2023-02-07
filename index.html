@@ -46,13 +46,21 @@
       <iframe class="blaxtair-iframe" id="blaxtairContainer" src="https://blaxtair.com/"></iframe>
     </div>
     <script>
+      const jokes = [
+        "Why did the tomato turn red? Because it saw the salad dressing!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!",
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Why did the cookie go to the doctor? Because it was feeling crumbly!",
+        "Why did the bicycle fall over? Because it was two-tired!"
+      ];
       const jokeButton = document.getElementById("jokeButton");
       const jokeContainer = document.getElementById("jokeContainer");
       const blaxtairButton = document.getElementById("blaxtairButton");
       const blaxtairContainer = document.getElementById("blaxtairContainer");
-
+      
       jokeButton.addEventListener("click", function() {
-        jokeContainer.innerHTML = "Why did the scarecrow win an award? Because he was outstanding in his field.";
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        jokeDiv.innerHTML = jokes[randomIndex];
       });
 
       blaxtairButton.addEventListener("click", function() {
